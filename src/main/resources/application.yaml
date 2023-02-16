@@ -13,4 +13,4 @@ springdoc:
         - group: 'default'
           paths-to-match: '/**'
 #         Scan all your controller packages.
-          packages-to-scan: 'com/asaka/swaggerhello/controller'
+          packages-to-scan: 'com.asaka.swaggerhello.controller'
