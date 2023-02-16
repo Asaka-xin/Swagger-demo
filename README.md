@@ -1,14 +1,7 @@
 # Swagger-demo
 ---
 
-# 学习Swagger
-
-- 认识API框架
-- 解决如何使用Swagger
-
-脚注：
-
-
+# Swagger 3（Springdoc）
 
 ## 前言
 
@@ -18,7 +11,7 @@
 
 **官方网站**：[https://swagger.io](https://swagger.io)
 
-**官方文档（适用于2.x）**：[https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Integration-and-Configuration](https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Integration-and-Configuration)
+**官方文档**：[https://springdoc.org/](https://springdoc.org/)
 
 - 现目前最流行的API框架
 - API文档自动生成同步（自动同步代码更新）
@@ -43,7 +36,16 @@
 
 #### 2.2更新文件pom.xml
 
-加入如下依赖项
+**解析依赖项**
+
+> 1. Swagger技术
+>
+> - Swagger是遵循OpenApi3.0 的一项技术
+>
+> 2. 核心+UI = 实现
+>
+> - SpringDoc
+> - Knife4j是一个UI
 
 ```xml
 	<dependencies>
@@ -51,10 +53,10 @@
 			<!--    spring doc   -->
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.13</version>
+            <version>1.6.14</version>
         </dependency>
         <dependency>
-            <!--  swagger 3	-->
+            <!--  Knife4j UI-->
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-springdoc-ui</artifactId>
             <version>3.0.3</version>
@@ -85,9 +87,43 @@ springdoc:
     group-configs:
         - group: 'default'
           paths-to-match: '/**'
-#         Scan all your controllers package.
+# Scan your controller package.
           packages-to-scan:
 ```
 
 #### 2.4在代码中使用注解
 
+##### 使用前
+
+```java
+@RestController
+@RequestMapping("/default")
+public class DefaultController {
+
+    @GetMapping("/hello")
+    public String index(){
+        return "Hello Swagger3 !";
+    }
+```
+
+##### 使用后
+
+```java
+@Tag(name = "默认分类")
+@RestController
+@RequestMapping("/default")
+public class DefaultController {
+
+    @Operation(summary = "默认信息")
+    @Parameter(name = "id" , required = false, description = "序号")
+    @GetMapping("/hello")
+    public String index(){
+        return "Hello Swagger3!";
+    }
+```
+
+## 3.访问地址
+
+Swagger UI : http://server:port/swagger-ui.html
+
+Knife4j  ： http://server:port/doc.html
