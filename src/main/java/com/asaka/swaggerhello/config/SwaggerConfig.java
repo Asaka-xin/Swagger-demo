@@ -8,12 +8,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
+    //对API进行分组
     @Bean
     public GroupedOpenApi api() {return GroupedOpenApi.builder().group("all")
             .pathsToMatch("/**")
             .packagesToScan("com.asaka.swaggerhello.controller").build();
     }
 
+   //自定义OpenAPI的显示信息
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
