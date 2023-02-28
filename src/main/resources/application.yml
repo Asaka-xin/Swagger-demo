@@ -14,3 +14,8 @@ springdoc:
           paths-to-match: '/**'
 #         Scan all your controller packages.
           packages-to-scan: 'com.asaka.swaggerhello.controller'
+
+map:
+    data:
+         name: 战鹰
+         age: 3
