@@ -15,7 +15,7 @@
 
 - 现目前最流行的API框架
 - API文档自动生成同步（自动同步代码更新）
-- 在线测试API
+- 在线调试API
 
 ## 2.安装
 
@@ -42,10 +42,10 @@
 >
 > - Swagger是遵循OpenApi3.0 的一项技术
 >
-> 2. 核心+UI = 实现
+> 2. 核心+UI = 实现(spingfox/springdoc)
 >
 > - SpringDoc
-> - Knife4j是一个UI
+> - Knife4j是一个UI (增强版本)
 
 ```xml
 	<dependencies>
@@ -66,7 +66,7 @@
 
 #### 2.3配置
 
-找到项目中的 ==application.properties==->**重命名**->==application.yaml== [^1]
+找到项目中的 ==application.properties==->**重命名**->==application.yml== [^1]
 
 [^1]: *.properties格式文件无法写注释
 
