@@ -19,6 +19,7 @@ public class DefaultController {
 
     @Operation(summary = "默认信息")
     @Parameter(name = "id" , required = false, description = "序号")
+    @Parameter(name = "name",required = true, description = "姓名")
     @GetMapping("/hello")
     public String index(){
         return "Hello Swagger3!";
