@@ -11,9 +11,7 @@ Swagger 快速上手
 
 ## 1.介绍Swagger
 
-**官方网站**：[https://swagger.io](https://swagger.io)
-
-**官方文档**：[https://springdoc.org/](https://springdoc.org/)
+**官方文档**：[https://doc.xiaominfo.com/docs/quick-start#spring-boot-2](https://doc.xiaominfo.com/docs/quick-start#spring-boot-2)
 
 - 现目前最流行的API框架
 - API文档自动生成同步（自动同步代码更新）
@@ -24,7 +22,7 @@ Swagger 快速上手
 **先决条件**
 
 > - 必须基于SpringBoot项目
-> - 最小依赖项为SpringWeb
+> - 最小依赖项为 SpringWeb
 
 **示例环境**
 
@@ -133,7 +131,7 @@ Knife4j  ： http://server:port/doc.html
 
 ## 可选配置
 
-新建配置类
+在包com.xxx.xxx.config下新建配置类
 
 ```java
 /*

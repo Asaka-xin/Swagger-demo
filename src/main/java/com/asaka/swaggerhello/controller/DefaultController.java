@@ -32,9 +32,11 @@ public class DefaultController {
     @Parameter(name = "name",required = true, description = "姓名")
     @GetMapping("/hello")
     public String index(){
-        return "Hello Swagger3!";
+        return "<h1>Hello Swagger3!</h1>";
     }
 
+    @Operation(summary = "测试")
+    @Parameter(name = "name",required = true,description = "姓名")
     @RequestMapping("/test")
     public ResponseEntity<ReadConfig> test(){
         return ResponseEntity.ok(readConfig);
