@@ -17,10 +17,12 @@ springdoc:
 
 map:
     data:
-         name: 战鹰
+         name: 你好
          age: 3
 
-# 日志配置
+spring:
+    application:
+        name: swagger-hello
 # 日志配置
 logging:
     # 日志级别
