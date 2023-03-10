@@ -12,20 +12,18 @@
 
 #### application.yml
 
-```yml
-spring:
-  datasource:
-    driver-class-name: 
-    url: 
-    username: 
-    password: 
-  jpa:
-    hibernate:
-    # auto make table
-      ddl-auto: update
-    # Console Print SQL
-    show-sql: true
+```properties
+server.port=8080
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/employee?useSSL=false
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.jpa.hibernate.ddl-auto=update //数据库映射操作策略
+spring.jpa.show-sql=true //显示SQL
+
 ```
+
+### 注解参考：
 
 **@Entity** :定义对象将会成为被JPA管理的实体，将映射到指定的数据库表。
 **@Table** :指定数据库的表名。
@@ -44,6 +42,85 @@ spring:
 **@OneToMany与@ManyToOne**可以相对存在，也可只存在一方。
 **@ManyToMany**表示多对多，和@OneToOne、@ManyToOne一样也有单向、双向之分。单向双向和注解没有关系，只看实体类之间是否相互引用。
 
-https://blog.csdn.net/matafeiyanll/article/details/124603090
+实体类编写：
 
-![](https://img-blog.csdnimg.cn/18437df67d574c5c9adc71c9f269fd28.png)
+```java
+package com.asaka.swaggerhello.pojo;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "user")
+public class User {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "password")
+    private String password;
+}
+
+```
+
+### Interface继承JPARepository
+
+```java
+@Repository
+public interface UserRepository extends JpaRepository<User,Integer> {
+}
+```
+
+### 控制类
+
+```java
+package com.ydlclass.jpa.ydljpa;
+
+import com.ydlclass.jpa.ydljpa.dao.UserRepository;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class YdljpaApplicationTests {
+
+    @Autowired
+    UserRepository userRepository;
+    
+    @Test
+    public void testQuery(){
+        userRepository.findById(1).ifPresent(System.out::println);
+    }
+    
+}
+```
+
+### 添加操纵：
+
+```java
+  @Test
+    public void testAdd(){
+        User user=new User();
+        //user.setId(2);
+        user.setUsername("itnanls");
+        user.setPassword("ydl666");
+
+        User saveUser = userRepository.save(user); //新增 返回的实体中带着实体id
+        System.out.println(saveUser);
+    }
+```
+
+```java
+ @Test
+    public void testDel(){
+        userRepository.deleteById(3);
+    }
+```
+
